@@ -8,8 +8,8 @@ module.exports = function validateRegisterInput(data) {
   data.password = !isEmpty(data.password) ? data.password : '';
   data.password_confirm = !isEmpty(data.password_confirm) ? data.password_confirm : '';
 
-  if (!validator.isLength(data.name, { min: 2, max: 30 })) {
-    errors.name = 'Name must be between 2 to 30 chars';
+  if (!validator.isLength(data.name, { min: 4, max: 20 })) {
+    errors.name = 'Name must be between 4 to 20 chars';
   }
 
   if (validator.isEmpty(data.name)) {
@@ -24,16 +24,16 @@ module.exports = function validateRegisterInput(data) {
     errors.email = 'Email is required';
   }
 
-  if (!validator.isLength(data.password, { min: 6, max: 30 })) {
-    errors.password = 'Password must have 6 chars';
+  if (!validator.isLength(data.password, { min: 8, max: 30 })) {
+    errors.password = 'Password must have 8 chars';
   }
 
   if (validator.isEmpty(data.password)) {
     errors.password = 'Password is required';
   }
 
-  if (!validator.isLength(data.password_confirm, { min: 6, max: 30 })) {
-    errors.password_confirm = 'Password must have 6 chars';
+  if (!validator.isLength(data.password_confirm, { min: 8, max: 30 })) {
+    errors.password_confirm = 'Password must have 8 chars';
   }
 
   if (!validator.equals(data.password, data.password_confirm)) {
