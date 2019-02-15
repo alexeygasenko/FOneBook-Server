@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
-  login: {
+  name: {
     type: String,
     required: true
   },
@@ -18,7 +18,7 @@ const UserSchema = new Schema({
   avatar: {
     type: String
   },
-  registerDate: {
+  date: {
     type: Date,
     default: Date.now
   }
