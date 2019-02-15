@@ -4,7 +4,8 @@
   "description": "Server for the FOneBook information portal",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "precommit": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -18,28 +19,13 @@
   "homepage": "https://github.com/alexeygasenko/FOneBook-Server#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
-    "eslint-config-prettier": "^4.0.0",
-    "eslint-plugin-prettier": "^3.0.1",
     "express": "^4.16.4",
-    "husky": "^1.3.1",
-    "lint-staged": "^8.1.4",
     "mongoose": "^5.4.12",
-    "passport": "^0.4.0",
-    "prettier": "^1.16.4"
+    "passport": "^0.4.0"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{jsx,js}": [
-      "eslint --max-warnings=0 --fix",
-      "prettier --write",
-      "git add"
-    ]
-  },
-  "eslintConfig": {
-    "extends": "react-app"
+  "devDependencies": {
+    "eslint": "^5.13.0",
+    "eslint-plugin-node": "^8.0.1",
+    "husky": "^1.3.1"
   }
 }
