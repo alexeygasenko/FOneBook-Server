@@ -2,28 +2,28 @@ const validator = require('validator');
 const isEmpty = require('./is-empty');
 
 module.exports = function validateLoginInput(data) {
-  let error = {};
-  data.login = !isEmpty(data.login) ? data.login : '';
+  let errors = {};
+  data.email = !isEmpty(data.email) ? data.email : '';
   data.password = !isEmpty(data.password) ? data.password : '';
 
-  if (validator.isEmpty(data.login)) {
-    error.login = `Поле 'Логин' обязательно`;
+  if (!validator.isEmail(data.email)) {
+    errors.email = 'Email is invalid';
   }
 
-  if (!validator.isLength(data.login, { min: 4, max: 20 })) {
-    error.login = 'Логин должен содержать от 4 до 20 символов';
+  if (validator.isEmpty(data.email)) {
+    errors.email = 'Email is required';
   }
 
-  if (!validator.isLength(data.password, { min: 8, max: 30 })) {
-    error.password = 'Пароль должен содержать от 8 символов';
+  if (!validator.isLength(data.password, { min: 6, max: 30 })) {
+    errors.password = 'Password must have 6 chars';
   }
 
   if (validator.isEmpty(data.password)) {
-    error.password = `Поле 'Пароль' обязательно`;
+    errors.password = 'Password is required';
   }
 
   return {
-    error,
-    isValid: isEmpty(error)
+    errors,
+    isValid: isEmpty(errors)
   }
 }
