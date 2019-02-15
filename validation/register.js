@@ -8,8 +8,8 @@ module.exports = function validateInput(data) {
   data.password = !isEmpty(data.password) ? data.password : '';
   data.password_confirm = !isEmpty(data.password_confirm) ? data.password_confirm : '';
 
-  if (!validator.isLength(data.login, { min: 4, max: 32 })) {
-    error.login = 'Логин должен содержать от 4 до 32 символов';
+  if (!validator.isLength(data.login, { min: 4, max: 20 })) {
+    error.login = 'Логин должен содержать от 4 до 20 символов';
   }
 
   if (validator.isEmpty(data.login)) {
