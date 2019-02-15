@@ -1,0 +1,25 @@
+{
+  "name": "fonebook-server",
+  "version": "0.0.1",
+  "description": "Server for the FOneBook information portal",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexeygasenko/FOneBook-Server.git"
+  },
+  "author": "Alexey Gasenko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexeygasenko/FOneBook-Server/issues"
+  },
+  "homepage": "https://github.com/alexeygasenko/FOneBook-Server#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.12",
+    "passport": "^0.4.0"
+  }
+}
