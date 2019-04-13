@@ -7,19 +7,19 @@ module.exports = function validateLoginInput(data) {
   data.password = !isEmpty(data.password) ? data.password : '';
 
   if (!validator.isEmail(data.email)) {
-    errors.email = 'Email is invalid';
+    errors.email = 'Неверный Email';
   }
 
   if (validator.isEmpty(data.email)) {
-    errors.email = 'Email is required';
+    errors.email = `Поле 'Email' обязательно`;
   }
 
-  if (!validator.isLength(data.password, { min: 8, max: 30 })) {
-    errors.password = 'Password must have 8 chars';
+  if (!validator.isLength(data.password, { min: 8 })) {
+    errors.password = 'Пароль должен состоять не менее чем из 8 символов';
   }
 
   if (validator.isEmpty(data.password)) {
-    errors.password = 'Password is required';
+    errors.password = `Поле 'Пароль' обязательно`;
   }
 
   return {
