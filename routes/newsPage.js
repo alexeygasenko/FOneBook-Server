@@ -9,12 +9,13 @@ router.get('/:url', function(req, res) {
   })
     .then(newsPage => {
       if (!newsPage) {
-        throw new Error('News with this url was not found');
+        throw new Error('News with this url was not found.');
+      } else {
+        return res.status(200).json(newsPage);
       }
-      return res.status(200).json(newsPage);
     })
     .catch(err => {
-      res.status(404).send(err);
+      res.status(404).send(err.toString());
     });
 });
 
