@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-const NewsPreview = require('../models/NewsPreview');
+const NewsFeed = require('../models/NewsFeed');
 
 router.get('/', function(req, res) {
-  NewsPreview.find({
+  NewsFeed.find({
     date: {
       $gte: new Date(Date.now() - (7 * 24 * 60 * 60 * 1000)),
     }
