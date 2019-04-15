@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const NewsPreviewSchema = new Schema({
+const NewsFeedSchema = new Schema({
     title: {
         type: String,
         required: true
@@ -24,6 +24,6 @@ const NewsPreviewSchema = new Schema({
     collection: 'newsfeed',
 });
 
-const NewsPreview = mongoose.model('newsfeed', NewsPreviewSchema);
+const NewsFeed = mongoose.model('newsfeed', NewsFeedSchema);
 
-module.exports = NewsPreview;
+module.exports = NewsFeed;

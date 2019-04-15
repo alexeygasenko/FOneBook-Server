@@ -7,6 +7,7 @@ const config = require('./db');
 
 const users = require('./routes/user');
 const newsFeed = require('./routes/newsFeed');
+const newsPage = require('./routes/newsPage');
 
 mongoose.connect(config.DB, { useNewUrlParser: true }).then(
   () => { console.log('Database is connected') },
@@ -23,6 +24,7 @@ app.use(cors());
 
 app.use('/api/users', users);
 app.use('/api/news', newsFeed);
+app.use('/api/news', newsPage);
 
 app.get('/', function (req, res) {
   res.send('hello');
