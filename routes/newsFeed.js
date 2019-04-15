@@ -9,9 +9,8 @@ router.get('/', function(req, res) {
       $gte: new Date(Date.now() - (7 * 24 * 60 * 60 * 1000)),
     }
   })
-    .then(news => {
-      
-      return res.status(200).json(news);
+    .then(newsFeed => {
+      return res.status(200).json(newsFeed);
     });
 });
 
