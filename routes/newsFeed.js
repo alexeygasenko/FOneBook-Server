@@ -10,7 +10,7 @@ router.get('/', function(req, res) {
     }
   })
     .then(newsFeed => {
-      return res.status(200).json(newsFeed);
+      return res.status(200).send(newsFeed);
     });
 });
 
