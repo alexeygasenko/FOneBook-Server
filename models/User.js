@@ -18,10 +18,11 @@ const UserSchema = new Schema({
   avatar: {
     type: String
   },
-  date: {
+  registrationDate: {
     type: Date,
     default: Date.now
-  }
+  },
+  bookings: { type: mongoose.Schema.Types.ObjectId, ref: 'userbooking' }
 });
 
 const User = mongoose.model('users', UserSchema);
