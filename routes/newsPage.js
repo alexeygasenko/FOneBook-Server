@@ -18,13 +18,13 @@ router.get('/:url', function(req, res) {
           if (!newsPage) {
             throw new Error('News with this url was not found.');
           } else {
-            return res.status(200).send({
-              newsPage: newsPage,
-              otherNews: otherNews,
-            });
+              return res.status(200).send({
+                newsPage: newsPage,
+                otherNews: otherNews,
+              });
+            }
           }
-        }
-      )
+        )
         .catch(err => {
           res.status(404).send(err.toString());
         });
