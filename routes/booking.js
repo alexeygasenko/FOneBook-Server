@@ -18,8 +18,13 @@ router.get('/:id', function(req, res) {
     .populate('user')
     .populate('event')
     .exec(function(err, bookings) {
-      return res.status(200).send(bookings);
+      if (err) return res.status(400).send(err);
+      if (bookings.length === 0) {
+        res.status(404).send('Bookings were not found');
+      } else {
+        return res.status(200).send(bookings);
+      }
     })
-})
+});
 
 module.exports = router;
