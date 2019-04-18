@@ -27,4 +27,19 @@ router.get('/:id', function(req, res) {
     })
 });
 
+router.get('/bookinginfo/:id', function(req, res) {
+  UserBooking.findOne({
+    _id: req.params.id,
+  })
+    .populate('event')
+    .exec(function(err, bookingInfo) {
+      if (err) return res.status(400).send(err);
+      if (!bookingInfo) {
+        res.status(404).send('Booking with this id is not found');
+      } else {
+        return res.status(200).send(bookingInfo);
+      }
+    })
+})
+
 module.exports = router;
