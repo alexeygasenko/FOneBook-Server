@@ -27,7 +27,7 @@ router.get('/:id', function(req, res) {
     })
 });
 
-router.get('/bookinginfo/:id', function(req, res) {
+router.get('/booking-info/:id', function(req, res) {
   UserBooking.findOne({
     _id: req.params.id,
   })
@@ -40,6 +40,6 @@ router.get('/bookinginfo/:id', function(req, res) {
         return res.status(200).send(bookingInfo);
       }
     })
-})
+});
 
 module.exports = router;
