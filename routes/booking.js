@@ -42,4 +42,40 @@ router.get('/booking-info/:id', function(req, res) {
     })
 });
 
+router.post('/make-a-book/', function(req, res) {
+  if (!req.body.eventId || !req.body.userId || !req.body.tribune
+      || !req.body.dayOne || !req.body.dayTwo || !req.body.dayThree) {
+    res.status(400).send('Some of the booking information is missing.');   
+  }
+
+  BookingEvent.findOne({
+    _id: req.body.eventId,
+  }).then(event => {
+    let isInTribunes = false;
+    for (let i = 0; i < event.tribunes.length; ++i) {
+      if (event.tribunes[i].name === req.body.tribune) {
+        isInTribunes = true;
+      }
+    }
+    if (!isInTribunes) {
+      res.status(400).send('This event does not contain the following tribune');
+
+    } else {
+      const newUserBooking = new UserBooking({
+        user: req.body.userId,
+        event: req.body.eventId,
+        tribune: req.body.tribune,
+        dayOne: req.body.dayOne,
+        dayTwo: req.body.dayTwo,
+        dayThree: req.body.dayThree
+      });
+    
+      newUserBooking.save()
+        .then(userBooking => {
+          res.status(200).send(userBooking);
+        });
+    }
+  });
+});
+
 module.exports = router;
