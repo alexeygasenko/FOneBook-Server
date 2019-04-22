@@ -26,10 +26,10 @@ app.use(cors());
 app.use('/api/users', users);
 app.use('/api/news', newsFeed);
 app.use('/api/news', newsPage);
-app.use('/api/bookings', booking)
+app.use('/api/bookings', booking);
 
 app.get('/', function (req, res) {
-  res.send('hello');
+  res.send('Hello from the FOneBook website!');
 });
 
 const PORT = process.env.PORT || 8000;
