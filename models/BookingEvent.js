@@ -11,7 +11,7 @@ const BookingEventSchema = new Schema({
     type: Date,
     required: true
   },
-  coutry: {
+  country: {
     type: String,
     required: true
   },
