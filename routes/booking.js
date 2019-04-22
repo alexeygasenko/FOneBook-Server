@@ -20,7 +20,7 @@ router.get('/:id', function(req, res) {
     .exec(function(err, bookings) {
       if (err) return res.status(400).send(err);
       if (bookings.length === 0) {
-        res.status(404).send('Bookings were not found');
+        return res.status(404).send('Bookings were not found');
       } else {
         return res.status(200).send(bookings);
       }
@@ -35,7 +35,7 @@ router.get('/booking-info/:id', function(req, res) {
     .exec(function(err, bookingInfo) {
       if (err) return res.status(400).send(err);
       if (!bookingInfo) {
-        res.status(404).send('Booking with this id is not found');
+        return res.status(404).send('Booking with this id is not found');
       } else {
         return res.status(200).send(bookingInfo);
       }
@@ -43,9 +43,10 @@ router.get('/booking-info/:id', function(req, res) {
 });
 
 router.post('/make-a-book/', function(req, res) {
-  if (!req.body.eventId || !req.body.userId || !req.body.tribune
-      || !req.body.dayOne || !req.body.dayTwo || !req.body.dayThree) {
-    res.status(400).send('Some of the booking information is missing.');   
+  if (!req.body.hasOwnProperty('eventId') || !req.body.hasOwnProperty('userId')
+    || !req.body.hasOwnProperty('tribune') || !req.body.hasOwnProperty('dayOne') 
+    || !req.body.hasOwnProperty('dayTwo') || !req.body.hasOwnProperty('dayThree')) {
+    return res.status(400).send('Some of the booking information is missing.');   
   }
 
   BookingEvent.findOne({
