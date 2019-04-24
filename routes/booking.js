@@ -24,7 +24,7 @@ router.get('/:id', function(req, res) {
       } else {
         return res.status(200).send(bookings);
       }
-    })
+    });
 });
 
 router.get('/booking-info/:id', function(req, res) {
@@ -89,7 +89,7 @@ router.post('/make-a-book/', function(req, res) {
     
     newUserBooking.save()
       .then(userBooking => {
-        return res.status(200).send(userBooking);
+        return res.status(201).send(userBooking);
       });
 
     if (req.body.dayOne) {
@@ -139,6 +139,19 @@ router.post('/make-a-book/', function(req, res) {
         });
     }
   });
+});
+
+router.delete('/delete-booking/:id', function(req, res) {
+  UserBooking.findOneAndDelete({
+    _id: req.params.id,
+  })
+    .then(userBooking => {
+      if (!userBooking) {
+        res.status(404).send('Booking with this ID was not found.');
+      } else {
+        res.status(200).send(userBooking);
+      }
+    })
 });
 
 module.exports = router;
