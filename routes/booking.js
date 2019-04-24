@@ -141,7 +141,7 @@ router.post('/make-a-book/', function(req, res) {
   });
 });
 
-router.delete('/delete-booking/:id', function(req, res) {
+router.delete('/:id', function(req, res) {
   UserBooking.findOneAndDelete({
     _id: req.params.id,
   })
