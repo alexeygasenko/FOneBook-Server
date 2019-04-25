@@ -15,6 +15,7 @@ const NewsPageSchema = new Schema({
     type: String,
     required: true
   },
+  author: { type: mongoose.Schema.Types.ObjectId, ref: 'users' },
   date: {
     type: Date,
     required: true
