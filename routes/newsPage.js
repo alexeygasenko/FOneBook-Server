@@ -8,6 +8,7 @@ router.get('/:url', function(req, res) {
   NewsPage.findOne({
     url: req.params.url,
   })
+    .populate('author')
     .then(newsPage => {
       NewsFeed.find({
         url: {
