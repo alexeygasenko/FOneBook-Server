@@ -149,7 +149,73 @@ router.delete('/:id', function(req, res) {
       if (!userBooking) {
         res.status(404).send('Booking with this ID was not found.');
       } else {
-        res.status(200).send(userBooking);
+        BookingEvent.findOne({
+          _id: req.body.eventId,
+        }).then(event => {
+          let isInTribunes = false;
+          let tribuneNumber = 0;
+
+          for (let i = 0; i < event.tribunes.length; ++i) {
+            if (event.tribunes[i].name === req.body.tribune) {
+              isInTribunes = true;
+              tribuneNumber = i;
+            }
+          }
+
+          if (!isInTribunes) {
+            return res.status(400).send('This event does not contain the following tribune');
+          }
+
+          if (req.body.dayOne) {
+            BookingEvent.updateOne(
+              {
+                _id: req.body.eventId,
+                'tribunes.name': req.body.tribune,
+              },
+              {
+                $set: {
+                  'tribunes.$.dayOne.seats': event.tribunes[tribuneNumber].dayOne.seats + 1,
+                }
+              }, function (err, bookingEvent) {
+                console.log(bookingEvent);
+                if (err) console.log(err);
+              });
+          }
+
+          if (req.body.dayTwo) {
+            BookingEvent.updateOne(
+              {
+                _id: req.body.eventId,
+                'tribunes.name': req.body.tribune,
+              },
+              {
+                $set: {
+                  'tribunes.$.dayTwo.seats': event.tribunes[tribuneNumber].dayTwo.seats + 1,
+                }
+              }, function (err, bookingEvent) {
+                console.log(bookingEvent);
+                if (err) console.log(err);
+              });
+          }
+
+          if (req.body.dayThree) {
+            BookingEvent.updateOne(
+              {
+                _id: req.body.eventId,
+                'tribunes.name': req.body.tribune,
+              },
+              {
+                $set: {
+                  'tribunes.$.dayThree.seats': event.tribunes[tribuneNumber].dayThree.seats + 1,
+                }
+              }, function (err, bookingEvent) {
+                console.log(bookingEvent);
+                if (err) console.log(err);
+              });
+          }
+
+          res.status(200).send(userBooking);
+        });
       }
     })
 });
