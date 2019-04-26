@@ -22,6 +22,7 @@ require('./passport')(passport);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
+app.use(express.static('images'));
 
 app.use('/api/users', users);
 app.use('/api/news', newsFeed);
