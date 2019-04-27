@@ -102,12 +102,16 @@ router.post('/login', (req, res) => {
     });
 });
 
-router.get('/me', passport.authenticate('jwt', { session: false }), (req, res) => {
-  return res.json({
-    id: req.user.id,
-    name: req.user.name,
-    email: req.user.email
-  });
+router.get('/my-profile/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
+  User.findOne({
+    _id: req.params.id,
+  })
+    .then(user => {
+      if (!user) {
+        return res.status(404).json('User not found');
+      }
+      return res.status(200).send(user);
+    })
 });
 
 module.exports = router;
