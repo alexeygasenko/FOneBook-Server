@@ -34,6 +34,9 @@ router.post('/register', function (req, res) {
         name: req.body.name,
         email: req.body.email,
         password: req.body.password,
+        rating: 0,
+        isModerator: false,
+        nameChangeAttempts: 1,
         avatar
       });
 
@@ -111,6 +114,58 @@ router.get('/my-profile/:id', passport.authenticate('jwt', { session: false }), 
         return res.status(404).json('User not found');
       }
       return res.status(200).send(user);
+    })
+});
+
+router.put('/my-profile/:id/name', passport.authenticate('jwt', { session: false }), (req, res) => {
+  User.findOneAndUpdate(
+    {
+      _id: req.params.id,
+    },
+    {
+      $set: { name: req.body.name, nameChangeAttempts: 0 },
+    })
+      .then(user => {
+        if (!user) {
+          return res.status(404).json('User not found');
+        } else {
+          return res.status(201).send(user);
+        }     
+      });
+});
+
+router.put('/my-profile/:id/password', passport.authenticate('jwt', { session: false }), (req, res) => {
+  User.findOne({
+      _id: req.params.id,
+    })
+    .then(user => {
+      if (!user) {
+        return res.status(404).json('User not found');
+      } else {
+        bcrypt.compare(req.body.oldPassword, user.password)
+          .then(isMatch => {
+            if (isMatch) {
+              bcrypt.genSalt(10, (err, salt) => {
+                if (err) console.error('There was an error', err);
+                else {
+                  bcrypt.hash(req.body.newPassword, salt, (err, hash) => {
+                    if (err) console.error('There was an error', err);
+                    User.findOneAndUpdate({
+                      _id: req.params.id,
+                    }, {
+                      $set: {password: hash},
+                    })
+                      .then(user => {
+                        return res.status(201).send(user);
+                      });
+                  });
+                }
+              });
+            } else {
+              return res.status(400).json('Passwords didnt match');
+            }
+          })
+      }
     })
 });
 

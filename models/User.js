@@ -25,6 +25,9 @@ const UserSchema = new Schema({
   rating: {
     type: Number
   },
+  nameChangeAttempts: {
+    type: Number
+  },
   bookings: { type: mongoose.Schema.Types.ObjectId, ref: 'userbooking' }
 });
 
