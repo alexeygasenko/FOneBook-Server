@@ -8,6 +8,8 @@ const config = require('./db');
 const users = require('./routes/user');
 const newsFeed = require('./routes/newsFeed');
 const newsPage = require('./routes/newsPage');
+const historyFeed = require('./routes/historyFeed');
+const historyPage = require('./routes/historyPage');
 const booking = require('./routes/booking');
 
 mongoose.connect(config.DB, { useNewUrlParser: true }).then(
@@ -25,8 +27,13 @@ app.use(cors());
 app.use(express.static('images'));
 
 app.use('/api/users', users);
+
 app.use('/api/news', newsFeed);
 app.use('/api/news', newsPage);
+
+app.use('/api/history', historyFeed);
+app.use('/api/history', historyPage);
+
 app.use('/api/bookings', booking);
 
 app.get('/', function (req, res) {

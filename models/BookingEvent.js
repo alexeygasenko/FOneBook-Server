@@ -15,7 +15,11 @@ const BookingEventSchema = new Schema({
     type: String,
     required: true
   },
-  tribunes: {}
+  tribunes: {},
+  expired: {
+    type: Boolean,
+    required: true
+  }
 },
 {
   collection: 'bookingevent',

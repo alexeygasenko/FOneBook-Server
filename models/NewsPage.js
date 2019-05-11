@@ -20,6 +20,13 @@ const NewsPageSchema = new Schema({
     type: Date,
     required: true
   },
+  type: {
+    type: String,
+    required: true
+  },
+  tags: {
+    type: [String],
+  },
   blocks: {}
 },
 {
