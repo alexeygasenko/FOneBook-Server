@@ -6,10 +6,16 @@ const cors = require('cors');
 const config = require('./db');
 
 const users = require('./routes/user');
+
 const newsFeed = require('./routes/newsFeed');
 const newsPage = require('./routes/newsPage');
+
 const historyFeed = require('./routes/historyFeed');
 const historyPage = require('./routes/historyPage');
+
+const autoFeed = require('./routes/autoFeed');
+const autoPage = require('./routes/autoPage');
+
 const booking = require('./routes/booking');
 
 mongoose.connect(config.DB, { useNewUrlParser: true }).then(
@@ -33,6 +39,9 @@ app.use('/api/news', newsPage);
 
 app.use('/api/history', historyFeed);
 app.use('/api/history', historyPage);
+
+app.use('/api/auto', autoFeed);
+app.use('/api/auto', autoPage);
 
 app.use('/api/bookings', booking);
 
