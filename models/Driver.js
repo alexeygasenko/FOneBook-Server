@@ -34,6 +34,10 @@ const DriverSchema = new Schema({
     type: String,
     required: true
   },
+  number: {
+    type: Number,
+    required: true
+  },
   dateOfBirth: {
     type: Date,
     required: true
@@ -50,6 +54,9 @@ const DriverSchema = new Schema({
   },
   currentTeam: {
     type: mongoose.Schema.Types.ObjectId, ref: 'teams' 
+  },
+  currentCar: {
+    type: String
   },
   teams: [{ type: mongoose.Schema.Types.ObjectId, ref: 'teams' }],
   season: {
