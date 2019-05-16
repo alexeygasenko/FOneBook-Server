@@ -20,6 +20,10 @@ const NewsPageSchema = new Schema({
     type: Date,
     required: true
   },
+  pic: {
+    type: String,
+    required: true
+  },
   type: {
     type: String,
     required: true
