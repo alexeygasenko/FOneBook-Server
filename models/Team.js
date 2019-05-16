@@ -25,6 +25,9 @@ const TeamSchema = new Schema({
   season: {
     type: [SeasonSchema]
   }
+},
+{
+  collection: 'teams',
 });
 
 const Team = mongoose.model('teams', TeamSchema);

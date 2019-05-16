@@ -48,12 +48,16 @@ const DriverSchema = new Schema({
   yearEnd: {
     type: Number
   },
-  teams: {
-    type: mongoose.Schema.Types.ObjectId, ref: 'teams'
+  currentTeam: {
+    type: mongoose.Schema.Types.ObjectId, ref: 'teams' 
   },
+  teams: [{ type: mongoose.Schema.Types.ObjectId, ref: 'teams' }],
   season: {
     type: [DriverSeasonSchema]
   }
+},
+{
+  collection: 'drivers',
 });
 
 const Driver = mongoose.model('drivers', DriverSchema);

@@ -16,6 +16,10 @@ const historyPage = require('./routes/historyPage');
 const autoFeed = require('./routes/autoFeed');
 const autoPage = require('./routes/autoPage');
 
+require('./models/Team');
+require('./models/Driver');
+const statistics = require('./routes/statistics');
+
 const booking = require('./routes/booking');
 
 mongoose.connect(config.DB, { useNewUrlParser: true }).then(
@@ -42,6 +46,8 @@ app.use('/api/history', historyPage);
 
 app.use('/api/auto', autoFeed);
 app.use('/api/auto', autoPage);
+
+app.use('/api/stats', statistics);
 
 app.use('/api/bookings', booking);
 

@@ -9,6 +9,9 @@ const StatisticsSchema = new Schema({
   },
   teams: [{ type: mongoose.Schema.Types.ObjectId, ref: 'teams' }],
   drivers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'drivers' }]
+},
+{
+  collection: 'statistics',
 });
 
 const Statistics = mongoose.model('statistics', StatisticsSchema);
