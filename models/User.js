@@ -23,10 +23,16 @@ const UserSchema = new Schema({
     default: Date.now
   },
   rating: {
-    type: Number
+    type: Number,
+    required: true
+  },
+  isModerator: {
+    type: Boolean,
+    required: true
   },
   nameChangeAttempts: {
-    type: Number
+    type: Number,
+    required: true
   },
   bookings: { type: mongoose.Schema.Types.ObjectId, ref: 'userbooking' }
 });
