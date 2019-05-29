@@ -10,6 +10,9 @@ const users = require('./routes/user');
 const newsFeed = require('./routes/newsFeed');
 const newsPage = require('./routes/newsPage');
 
+const communityFeed = require('./routes/communityFeed');
+const communityPage = require('./routes/communityPage');
+
 const historyFeed = require('./routes/historyFeed');
 const historyPage = require('./routes/historyPage');
 
@@ -40,6 +43,9 @@ app.use('/api/users', users);
 
 app.use('/api/news', newsFeed);
 app.use('/api/news', newsPage);
+
+app.use('/api/community', communityFeed);
+app.use('/api/community', communityPage);
 
 app.use('/api/history', historyFeed);
 app.use('/api/history', historyPage);
