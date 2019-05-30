@@ -19,6 +19,8 @@ const historyPage = require('./routes/historyPage');
 const autoFeed = require('./routes/autoFeed');
 const autoPage = require('./routes/autoPage');
 
+const comments = require('./routes/comments');
+
 require('./models/Team');
 require('./models/Driver');
 const statistics = require('./routes/statistics');
@@ -56,6 +58,8 @@ app.use('/api/auto', autoPage);
 app.use('/api/stats', statistics);
 
 app.use('/api/bookings', booking);
+
+app.use('/api/comments', comments);
 
 app.get('/', function (req, res) {
   res.send('Hello from the FOneBook website!');
